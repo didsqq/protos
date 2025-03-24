@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package crud;
+
+option go_package = "didsqq.crud.v1;crudv1";
+
+import "google/protobuf/timestamp.proto";
+
+service Crud {
+    rpc Climbs (Empty) returns (ClimbsResponse);
+    rpc Climb (ClimbRequest) returns (ClimbResponse);
+}
+
+message ClimbRequest {
+    int64 climb_id = 1;
+}
+
+message ClimbResponse {
+    int64 id_mountain_climbs = 1;
+    int64 id_groups = 2;
+    int64 id_mountain = 3;
+    int64 id_category = 4;
+    google.protobuf.Timestamp start_date = 5;
+    google.protobuf.Timestamp end_date = 6;
+    string total = 7;  
+}
+
+message ClimbsResponse{
+    repeated ClimbResponse climbs = 1;
+}
+
+message Empty {}
